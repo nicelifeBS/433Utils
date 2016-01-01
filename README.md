@@ -41,9 +41,9 @@ This command is unaltered from the original rc\_switch distribution.
 
 
 ### codesend 
-```sudo ./codesend decimalcode```
+```sudo ./codesend decimalcode bitlength pulse```
 
-This command uses a single Ninja Blocks compatible decimal code.  Sniff out codes using the RF\_Sniffer.ino Arduino sketch, included in this distribution.
+This command uses a single Ninja Blocks compatible decimal code, the bit length and the pulse.  Sniff out codes using the RF\_Sniffer.ino Arduino sketch, included in this distribution. The sniffer will also output the decimalcode, bitlength and pulse.
 
 You can use codesend to control the wireless servo on your Arduino.
 (The sketch is Servo\_Receive\_Demo.ino)
