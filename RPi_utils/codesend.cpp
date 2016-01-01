@@ -21,18 +21,32 @@ int main(int argc, char *argv[]) {
     // This pin is not the first pin on the RPi GPIO header!
     // Consult https://projects.drogon.net/raspberry-pi/wiringpi/pins/
     // for more information.
-    int PIN = 0;
+    int PIN = 27;
+    int bitlength = 32;
+    int pulse = 160;
     
     // Parse the firt parameter to this command as an integer
     int code = atoi(argv[1]);
+    // bit length of code default is 24
     
-    if (wiringPiSetup () == -1) return 1;
-	printf("sending code[%i]\n", code);
-	RCSwitch mySwitch = RCSwitch();
-	mySwitch.enableTransmit(PIN);
-    
-    mySwitch.send(code, 24);
-    
-	return 0;
+    if (argc < 4) {
+	printf("You need to specify code bitlength pulse.\nE.g. 'codesend 12345678 32 260'\n");
+    } else {
+    	bitlength = atoi(argv[2]);
+	pulse = atoi(argv[3]);
 
+    	printf("bitlength: %i\n", bitlength);
+    	printf("pulse: %i\n", pulse);
+
+    	if (wiringPiSetup () == -1) return 1;
+    	
+	RCSwitch mySwitch = RCSwitch();
+    	mySwitch.setPulseLength(pulse);
+    	mySwitch.enableTransmit(PIN);    
+    	mySwitch.send(code, bitlength);
+    	
+	printf("sending code[%i]\n", code);
+
+    	return 0;
+    }
 }

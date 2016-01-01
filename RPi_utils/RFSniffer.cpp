@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
      // This pin is not the first pin on the RPi GPIO header!
      // Consult https://projects.drogon.net/raspberry-pi/wiringpi/pins/
      // for more information.
-     int PIN = 2;
+     int PIN = 28;
      
      if(wiringPiSetup() == -1)
        return 0;
@@ -38,8 +38,8 @@ int main(int argc, char *argv[]) {
         if (value == 0) {
           printf("Unknown encoding\n");
         } else {    
-   
-          printf("Received %i\n", mySwitch.getReceivedValue() );
+   	  printf("Code bitlength pulse\n");
+          printf("%i %i %i\n", mySwitch.getReceivedValue(), mySwitch.getReceivedBitlength(), mySwitch.getReceivedDelay() );
         }
     
         mySwitch.resetAvailable();
